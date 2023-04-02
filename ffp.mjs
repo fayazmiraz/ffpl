@@ -2,24 +2,31 @@
 
 // select_profile.mjs
 
-import { profile } from './profiles.js';
+import inquirer from 'inquirer';
+import os from 'os';
+import getFirefoxProfiles from './firefox-profile.mjs';
 
 const main = async () => {
-    const { default: inquirer } = await import('inquirer');
+  // Detect the operating system
+  const platform = os.platform();
 
-    const profiles = profile();
+  // Get the profiles based on the detected operating system
+  const profiles = getFirefoxProfiles(platform);
 
-    const { selectedProfile } = await inquirer.prompt([
-        {
-            type: 'list',
-            name: 'selectedProfile',
-            message: 'Select a profile:',
-            choices: profiles,
-            loop: false,
-        },
-    ]);
+  // Extract profile names
+  const profileNames = profiles.map((profile) => profile.Name);
 
-    console.log(`Selected: ${selectedProfile}`);
+  const { selectedProfile } = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'selectedProfile',
+      message: 'Select a Firefox profile:',
+      choices: profileNames,
+      loop: false,
+    },
+  ]);
+
+  console.log(`Selected: ${selectedProfile}`);
 };
 
 main();
