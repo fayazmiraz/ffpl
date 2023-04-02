@@ -4,7 +4,7 @@
 
 import inquirer from 'inquirer';
 import os from 'os';
-import getFirefoxProfiles from './firefox-profile.mjs';
+import getFirefoxProfiles from './firefox-profiles.mjs';
 
 const main = async () => {
   // Detect the operating system
