@@ -1,10 +1,8 @@
-// firefox-profile.mjs
-
 import path from 'path';
 import fs from 'fs';
 import ini from 'ini';
 import _ from 'lodash';
-import firefoxUserDirectory from './firefox-directory.mjs';
+import firefoxUserDirectory from './firefox-data-directory.mjs';
 
 export default function (platform) {
   const userDirectory = firefoxUserDirectory(platform);

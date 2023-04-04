@@ -5,7 +5,7 @@ import fuzzy from 'fuzzy';
 import autocompletePrompt from 'inquirer-autocomplete-prompt';
 import os from 'os';
 import { spawn } from 'child_process';
-import getFirefoxProfiles from './firefox-profiles.mjs';
+import getFirefoxProfiles from './modules/firefox-profiles.mjs';
 
 inquirer.registerPrompt( 'autocomplete', autocompletePrompt );
 
