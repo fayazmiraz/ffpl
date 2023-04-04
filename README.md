@@ -23,4 +23,5 @@ ffpl
 
 - [ ] Search while selecting profiles
 - [ ] Pinned profiles, configurable using a .conf file
+- [ ] Make it cross platform
 - [ ] Publish as an npm package named `ffpl`
