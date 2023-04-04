@@ -6,6 +6,7 @@ import autocompletePrompt from 'inquirer-autocomplete-prompt';
 import os from 'os';
 import { spawn } from 'child_process';
 import getFirefoxProfiles from './modules/firefox-profiles.mjs';
+import { getFirefoxCommand } from './modules/firefox-command.mjs';
 
 inquirer.registerPrompt( 'autocomplete', autocompletePrompt );
 
@@ -46,7 +47,7 @@ const main = async () => {
   ]);
   //*/
   
-  const command = '/Applications/Firefox.app/Contents/MacOS/firefox-bin';
+  const command = getFirefoxCommand();
   const args = ['-P', selectedProfile];
   const options = {
     detached: true,
