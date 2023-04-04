@@ -4,10 +4,14 @@ A CLI tool to launch Firefox with a selected profile name.
 
 ## Installation
 
-```sh
-sudo i ffpl
+For now, clone this repository and from within the directory of the repository run the following command:
 
-# to access globally in Linux, MacOS
+```sh
+sudo npm i -g .
+``` 
+
+```sh
+# Once ffpl is added to npm
 sudo npm i -g ffpl
 ```
 
