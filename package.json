@@ -1,16 +1,22 @@
 {
-  "name": "firefox-profile",
+  "name": "ffpl",
   "version": "1.0.0",
-  "description": "",
-  "main": "firefox-profile.js",
+  "description": "A CLI tool to launch a Firefox profile",
+  "main": "ffpl.mjs",
+  "bin": {
+    "ffpl": "ffpl.mjs"
+  },
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "firefox-profiles": "^1.0.1",
-    "inquirer": "^9.1.5"
+    "fuzzy": "^0.1.3",
+    "inquirer": "^9.1.5",
+    "inquirer-autocomplete-prompt": "^3.0.0"
   }
 }

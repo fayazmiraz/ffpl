@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 
-// select_profile.mjs
-
 import inquirer from 'inquirer';
+import fuzzy from 'fuzzy';
+import autocompletePrompt from 'inquirer-autocomplete-prompt';
 import os from 'os';
 import { spawn } from 'child_process';
 import getFirefoxProfiles from './firefox-profiles.mjs';
+
+inquirer.registerPrompt( 'autocomplete', autocompletePrompt );
 
 const main = async () => {
   // Detect the operating system
@@ -17,6 +19,22 @@ const main = async () => {
   // Extract profile names
   const profileNames = profiles.map((profile) => profile.Name);
 
+  /* Implementation with search
+  const searchProfiles = async (input, profiles) => {
+    input = input || '';
+    return profiles.filter((profile) => profile.name.toLowerCase().includes(input.toLowerCase()));
+  };
+
+  const { selectedProfile } = await inquirer.prompt([
+    {
+      type: 'autocomplete',
+      name: 'selectedProfile',
+      message: 'Select a Firefox profile to launch:',
+      source: async (answersSoFar, input) => searchProfiles(input, profileChoices),
+    },
+  ]);
+  // Implementation without search
+  /*/  
   const { selectedProfile } = await inquirer.prompt([
     {
       type: 'list',
@@ -26,24 +44,8 @@ const main = async () => {
       loop: false,
     },
   ]);
-
-  /*
-  const command = `/Applications/Firefox.app/Contents/MacOS/firefox-bin -P "${selectedProfile}" > /dev/null 2>&1`;
-  exec(command, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error executing command: ${error.message}`);
-      return;
-    }
-
-    if (stderr) {
-      console.error(`Error in command output: ${stderr}`);
-      return;
-    }
-
-    console.log( `Firefox profile [${selectedProfile}] launched successfully.` );
-  });
-  */
-
+  //*/
+  
   const command = '/Applications/Firefox.app/Contents/MacOS/firefox-bin';
   const args = ['-P', selectedProfile];
   const options = {
