@@ -17,7 +17,7 @@ const main = async () => {
   const profiles = getFirefoxProfiles(platform);
 
   // Extract profile names
-  const profileNames = profiles.map((profile) => profile.Name);
+  const profileNames = profiles.map((profile) => profile.Name).sort();
 
   /* Implementation with search
   const searchProfiles = async (input, profiles) => {
