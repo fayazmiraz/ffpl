@@ -25,7 +25,6 @@ ffpl
 
 ## TODO
 
-- [ ] Search while selecting profiles
 - [ ] Add argument. e.g. `ffpl profile` should fuzzy search for "profile" - launch if 1 is found & provide options if none or multiple are found.
 - [ ] Pinned profiles, configurable using a .conf file
 - [ ] Make it cross platform
