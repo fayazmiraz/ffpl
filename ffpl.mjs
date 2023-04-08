@@ -23,10 +23,7 @@ const main = async () => {
   // Let the profiles be fuzzy searched
   const searchProfiles = async (input, profileNames) => {
     input = input || '';
-    const options = {
-      extract: el => el.toLowerCase()
-    };
-    return fuzzy.filter(input, profileNames, options).map(el => el.string);
+    return fuzzy.filter(input, profileNames).map(el => el.string);
   };
 
   // get the profile from user input
@@ -40,8 +37,6 @@ const main = async () => {
     },
   ]);
 
-  console.log( `Selected Firefox Profile: [${selectedProfile}].` );
-
   const command = getFirefoxCommand();
   const args = ['-P', selectedProfile];
   const options = {
@@ -51,8 +46,6 @@ const main = async () => {
 
   const child = spawn(command, args, options);
   child.unref();
-
-  console.log( `Firefox profile [${selectedProfile}] launched successfully.` );
 };
 
 main();
