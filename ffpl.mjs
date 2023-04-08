@@ -20,33 +20,28 @@ const main = async () => {
   // Extract profile names
   const profileNames = profiles.map((profile) => profile.Name).sort();
 
-  /* Implementation with search
-  const searchProfiles = async (input, profiles) => {
+  // Let the profiles be fuzzy searched
+  const searchProfiles = async (input, profileNames) => {
     input = input || '';
-    return profiles.filter((profile) => profile.name.toLowerCase().includes(input.toLowerCase()));
+    const options = {
+      extract: el => el.toLowerCase()
+    };
+    return fuzzy.filter(input, profileNames, options).map(el => el.string);
   };
 
+  // get the profile from user input
   const { selectedProfile } = await inquirer.prompt([
     {
       type: 'autocomplete',
       name: 'selectedProfile',
-      message: 'Select a Firefox profile to launch:',
-      source: async (answersSoFar, input) => searchProfiles(input, profileChoices),
+      message: 'Select a Firefox Profile to Launch:',
+      source: async (answersSoFar, input) => searchProfiles(input, profileNames),
+      loop: false
     },
   ]);
-  // Implementation without search
-  /*/  
-  const { selectedProfile } = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'selectedProfile',
-      message: 'Select a Firefox profile:',
-      choices: profileNames,
-      loop: false,
-    },
-  ]);
-  //*/
-  
+
+  console.log( `Selected Firefox Profile: [${selectedProfile}].` );
+
   const command = getFirefoxCommand();
   const args = ['-P', selectedProfile];
   const options = {
